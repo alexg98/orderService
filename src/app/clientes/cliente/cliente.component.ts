@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BaseComponent } from '../../base/components/base.component';
 import { ClienteService } from '../cliente.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cliente',
@@ -44,5 +45,27 @@ export class ClienteComponent extends BaseComponent<Cliente> {
       gender : '1',
       email : ''
     });
+  } 
+
+   /**
+   * Validate before save or update Cliente
+   */
+  onSubmit(){
+    let subcription = this.service.getEntityByField(this.form.value.id,'id')
+    .pipe(map(changes =>
+      changes.map(value => {
+          if (value.payload.val().id === this.form.value.id && !this.form.get('$key').value) {
+            throw new Error('Ya existe un cliente con ese numero de Identificación')
+          }
+          if (this.form.get('$key').value !== value.payload.key ) {
+            throw new Error('El numero de identificación esta asignado a ' 
+              + value.payload.val().name + " " +value.payload.val().lastName)
+          }          
+          return null;
+      })))      
+    .subscribe(res => {
+      this.merge(); subcription.unsubscribe();
+    }, error => this.notificationService.warn(error));
+    
   }
 }   

@@ -14,4 +14,6 @@ export class ClienteService extends BaseService<Cliente> {
     constructor(firebase: AngularFireDatabase){
         super(firebase, 'clientes');        
     }    
+
+    
 }

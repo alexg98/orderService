@@ -21,3 +21,23 @@ export class Skill {
     name: string;
     estado: boolean;     
 }
+
+export class OrdenServicio {
+    $key: string;
+    id: number;
+    cliente: Cliente;
+    dateReceived: Date;
+    dateDelivered: Date;
+    state: string;    
+}
+
+export class DetalleOrdenServicio {
+    $key: string;
+    id_orden: string;
+    id: string;    
+    estado: string;
+    servicio : Servicio;
+    valor: number;
+    tipoPrenda : string;
+    localization: string;
+}

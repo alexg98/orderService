@@ -41,7 +41,11 @@ export class BaseComponent<T> implements OnInit, IBaseComponent  {
     this.notificationService.success(':: Submitted successfully');
   }
 
-  onSubmit() {   
+  onSubmit(){ console.log("Esta pasando")
+    this.merge();
+  }
+  
+  merge() {   console.log("Esta pasando por el merge")
     if (this.form.valid) {
       let val = this.form.value;
       delete val.$key;

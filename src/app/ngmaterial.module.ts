@@ -25,7 +25,8 @@ import * as Material from "@angular/material";
     Material.MatListModule,
     Material.MatMenuModule,
     Material.MatCardModule,
-    Material.MatTabsModule
+    Material.MatTabsModule,
+    Material.MatAutocompleteModule
   ],
   exports: [
     Material.MatToolbarModule,
@@ -48,7 +49,8 @@ import * as Material from "@angular/material";
     Material.MatListModule,
     Material.MatMenuModule,
     Material.MatCardModule,
-    Material.MatTabsModule
+    Material.MatTabsModule,
+    Material.MatAutocompleteModule
   ],
   declarations: []
 })

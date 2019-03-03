@@ -1,0 +1,47 @@
+
+<mat-toolbar>
+    <span>{{form.controls['$key'].value?"Modify Detalle":"New Detalle"}}</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+
+<form [formGroup]="form" class="normal-form" (submit)="onSubmit()">
+    <mat-grid-list cols="2" rowHeight="300px">
+        <mat-grid-tile>
+            <div class="controles-container">
+                <input type="hidden" formControlName="$key">
+                                
+                <mat-form-field>
+                    <mat-select formControlName="servicio" matInput placeholder="Servicio*">
+                        <mat-option *ngFor="let servicio of listTipoServicios" [value]="servicio.$key">
+                            {{servicio.nombre}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-select formControlName="tipoPrenda" matInput placeholder="Tipo Prenda*">
+                        <mat-option *ngFor="let symbol of keysTP(tiposPrenda)" [value]="symbol">
+                            {{tiposPrenda[symbol]}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input formControlName="valor" matInput placeholder="Valor*" >
+                    <mat-error>This field is mandatory.</mat-error>
+                </mat-form-field>
+
+            </div>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <div class="controles-container">
+                <div class="button-row">
+                  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
+                  <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>

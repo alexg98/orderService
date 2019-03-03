@@ -1,12 +1,23 @@
+<input type="hidden" formControlName="keyClienteCtrl">
+<mat-form-field matAutocompleteOrigin #origin="matAutocompleteOrigin">
+  <input
+    matInput
+    [formControl]="clientCtrl"
+    [matAutocomplete]="auto"
+    placeholder="Nro Identificacion*"
+    [matAutocompleteConnectedTo]="origin">
+</mat-form-field>
 <button mat-raised-button  (click)="onCreate()">
-  <mat-icon>add</mat-icon>Create
+  <mat-icon>add</mat-icon>Nuevo / Actualizar
 </button>
+<mat-autocomplete #auto="matAutocomplete">
+  <mat-option *ngFor="let result of results | async" [value]="result.id">
+    {{ result.id }} - {{ result.name }}
+  </mat-option>
+</mat-autocomplete>
 
-<div>
-    <input type="text" (keyup)="search()" [(ngModel)]="searchValue">
-    <div class="search-results">
-      <div class="search-result" *ngFor="let result of results | async">
-        {{ result.$key }} {{ result.id }} - {{ result.name }}
-      </div>
-    </div>
-  </div>
+<div *ngIf="clienteSelect != null">
+    {{clienteSelect.$key}} : {{clienteSelect.id}} - {{clienteSelect.name}} - {{clienteSelect.lastName}} - {{clienteSelect.phone}}
+</div>
+  
+

@@ -1,7 +1,40 @@
 <mat-tab-group>
   <mat-tab label="Orden servicio">
-    <app-info></app-info>
+    
   </mat-tab>
-  <mat-tab label="Detalle">Detalle</mat-tab>
+  <mat-tab label="Detalle">
+    <app-detalles></app-detalles>
+  </mat-tab>
   <mat-tab label="Resumen">Resumen</mat-tab>
 </mat-tab-group>
+
+
+<mat-horizontal-stepper linear #stepper>
+    <mat-step [stepControl]="firstFormGroup" errorMessage="La informacion del cliente es requerida.">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out your name</ng-template>                
+        <app-info></app-info>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out your address</ng-template>
+        <app-detalles></app-detalles>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>

@@ -9,8 +9,22 @@ export default class Utils {
         dialogConfig.autoFocus = DialogConfig.autoFocus;
         dialogConfig.width = DialogConfig.width;
         if(data != null){
-        dialogConfig.data = data;
+            dialogConfig.data = data;
+            console.log(data);
         }   
         return dialogConfig  
-    }    
+    }
+    
+    static getDummyClienteWithID(id){
+        return {
+            $key : null,
+            id : id,
+            name : null,
+            lastName : null,
+            phone : null,              
+            address : '',
+            email : '',
+            gender : '1'
+        }
+    }
 }

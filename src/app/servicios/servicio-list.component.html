@@ -17,7 +17,7 @@
     </ng-container>   
     <ng-container matColumnDef="precio">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Precio</mat-header-cell>
-      <mat-cell *matCellDef="let element">{{element.precio}}</mat-cell>
+      <mat-cell *matCellDef="let element">{{element.precio|currency:'USD':true:'1.2-2'}}</mat-cell>
     </ng-container>    
     <ng-container matColumnDef="estado">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Estado</mat-header-cell>

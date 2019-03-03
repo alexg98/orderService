@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { AngularFireDatabase, AngularFireList, SnapshotAction } from 'angularfire2/database';
 import * as _ from 'lodash';
-import { DatePipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Cliente } from 'src/app/models/business.model';
 
 export interface IBaseService<T>{
     findAll() : Observable<SnapshotAction<any>[]>;
     create(model: T) : void;
     update(model: T, id : string) : void;
     delete(id: string) : void;
+    getEntityByField(id : number,campo : string) : Observable<any>;
 }
 
 @Injectable({
@@ -46,17 +44,25 @@ export class BaseService<T> implements IBaseService<T>{
     this.list.remove(key);
   }
 
-  getEntityByStart(start : string, campo, max){
+  getEntityByStart(start : string, campo, max) : Observable<T[]>{
     if(start.length <= max){
       return null;
     } 
     var list = this.firebase.list<T>(this.ref, ref => 
       ref.orderByChild(campo)
       .startAt(start)
-      .endAt(start+'\uf8ff')   
+      .endAt(start+'\uf8ff') 
       .limitToFirst(3))
       .snapshotChanges();
     return this.pipe(list);
+  }
+
+  getEntityByField(id : number,campo : string){
+    return this.firebase.list<T>(this.ref, ref => 
+      ref.orderByChild(campo)
+      .equalTo(id)
+      .limitToFirst(1))
+      .snapshotChanges();
   }
 
   pipe(list : Observable<any>) : any{
