@@ -24,7 +24,8 @@ import * as Material from "@angular/material";
     Material.MatSidenavModule,
     Material.MatListModule,
     Material.MatMenuModule,
-    Material.MatCardModule
+    Material.MatCardModule,
+    Material.MatTabsModule
   ],
   exports: [
     Material.MatToolbarModule,
@@ -46,7 +47,8 @@ import * as Material from "@angular/material";
     Material.MatSidenavModule,
     Material.MatListModule,
     Material.MatMenuModule,
-    Material.MatCardModule
+    Material.MatCardModule,
+    Material.MatTabsModule
   ],
   declarations: []
 })

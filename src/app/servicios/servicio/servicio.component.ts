@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import { Servicio } from '../models/business.model';
+import { Servicio } from '../../models/business.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { BaseComponent } from '../base/components/base.component';
-import { ServicioService } from './servicio.service';
+import { BaseComponent } from '../../base/components/base.component';
+import { ServicioService } from '../servicio.service';
 
 @Component({
   selector: 'app-servicio',
@@ -24,8 +24,8 @@ export class ServicioComponent extends BaseComponent<Servicio> {
             precio: new FormControl(null, [
               Validators.required,
               Validators.pattern('[0-9]*'),
-               Validators.minLength(8)]),            
-            estado: new FormControl(false)
+               Validators.minLength(4)]),            
+            estado: new FormControl(true)
           });
     }
 
@@ -34,7 +34,7 @@ export class ServicioComponent extends BaseComponent<Servicio> {
       $key: null,
       nombre: '',
       precio: null,
-      estado: false
+      estado: true
     });
   }
 }   

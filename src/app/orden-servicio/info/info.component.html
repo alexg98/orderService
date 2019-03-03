@@ -1,0 +1,12 @@
+<button mat-raised-button  (click)="onCreate()">
+  <mat-icon>add</mat-icon>Create
+</button>
+
+<div>
+    <input type="text" (keyup)="search()" [(ngModel)]="searchValue">
+    <div class="search-results">
+      <div class="search-result" *ngFor="let result of results | async">
+        {{ result.$key }} {{ result.id }} - {{ result.name }}
+      </div>
+    </div>
+  </div>

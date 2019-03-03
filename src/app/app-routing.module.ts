@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FirstPageComponent } from './first-page/first-page.component';
-import { ServicioListComponent } from './servicio/servicio-list.component';
-import { ClienteComponent } from './cliente/cliente.component';
-import { NameComponent } from './name/name.component';
-import { ClienteListComponent } from './cliente/cliente-list.component';
+import { ClienteListComponent } from './clientes/cliente-list.component';
+import { ServicioListComponent } from './servicios/servicio-list.component';
+import { SkillListComponent } from './skills/skill-list.component';
+import { OrdenServicioComponent } from './orden-servicio/orden-servicio.component';
 
 export const appRoutes: Routes = [
-  { path: 'first-page', component: FirstPageComponent },
   { path: 'clientes', component: ClienteListComponent },
-  { path: 'name', component: NameComponent },
-  { path: 'servicios', component: ServicioListComponent }
+  { path: 'servicios', component: ServicioListComponent },
+  { path: 'skills', component: SkillListComponent },
+  { path: 'orden-servicio', component: OrdenServicioComponent }
 ];
 
 @NgModule({

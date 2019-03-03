@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import { Cliente } from '../models/business.model';
+import { Cliente } from '../../models/business.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { BaseComponent } from '../base/components/base.component';
-import { ClienteService } from './cliente.service';
+import { BaseComponent } from '../../base/components/base.component';
+import { ClienteService } from '../cliente.service';
 
 @Component({
   selector: 'app-cliente',

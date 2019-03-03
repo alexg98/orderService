@@ -7,53 +7,44 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyNavComponent } from './my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
-import { NameComponent } from './name/name.component';
-import { FirstPageComponent } from './first-page/first-page.component';
 import { RouterModule } from '@angular/router';
 import { setAppInjector } from './app-injector';
 import { MaterialAppModule } from './ngmaterial.module';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { DatePipe } from '@angular/common';
-import { ServicioService } from './servicio/servicio.service';
-import { ServicioComponent } from './servicio/servicio.component';
 import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ServicioListComponent } from './servicio/servicio-list.component';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { ClienteComponent } from './cliente/cliente.component';
-import { ClienteListComponent } from './cliente/cliente-list.component';
-import { ClienteService } from './cliente/cliente.service';
+import { ClientesModule } from './clientes/clientes.module';
+import { ServiciosModule } from './servicios/servicios.module';
+import { SkillsModule } from './skills/skills.module';
+import { OrdenServicioModule } from './orden-servicio/orden-servicio.module';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 @NgModule({
   declarations: [
     AppComponent,
     MyNavComponent,
-    MyDashboardComponent,
-    NameComponent,
-    FirstPageComponent,
-    NameComponent,
-    ServicioComponent,
-    ServicioListComponent,
-    ClienteComponent,
-    ClienteListComponent,
-    MatConfirmDialogComponent
+    MyDashboardComponent,    
+    MatConfirmDialogComponent,
   ],
   imports: [
-    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
     RouterModule.forRoot(appRoutes),
     MaterialAppModule,
-    AngularFireDatabaseModule,
+    AngularFireDatabaseModule,    
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    FormsModule
+    ClientesModule,
+    ServiciosModule,
+    SkillsModule,
+    OrdenServicioModule
   ],
-  providers: [ServicioService,ClienteService, DatePipe],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
-  entryComponents:[MatConfirmDialogComponent,ServicioComponent,ClienteComponent]
+  entryComponents:[MatConfirmDialogComponent]
 })
 export class AppModule { 
   constructor(private injector: Injector) {

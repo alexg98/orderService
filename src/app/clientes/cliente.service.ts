@@ -1,14 +1,17 @@
 import { Injectable } from "@angular/core";
-import { Servicio, Cliente } from '../models/business.model';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { Cliente } from '../models/business.model';
+import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 import { BaseService } from '../base/services/base.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
   })
 export class ClienteService extends BaseService<Cliente> {
     
+    clients: AngularFireList<Cliente>;
+
     constructor(firebase: AngularFireDatabase){
         super(firebase, 'clientes');        
-    }
+    }    
 }

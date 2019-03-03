@@ -4,7 +4,8 @@ import { MatDialogConfig } from '@angular/material';
 import { BaseListComponent } from '../base/components/base-list.component';
 import { DialogConfig } from '../base/utilities/global';
 import { ClienteService } from './cliente.service';
-import { ClienteComponent } from './cliente.component';
+import { ClienteComponent } from './cliente/cliente.component';
+import Utils from '../shared/utils';
 
 @Component({
     selector: 'app-cliente-list',
@@ -17,14 +18,7 @@ export class ClienteListComponent extends BaseListComponent<Cliente> {
             ['id', 'name', 'lastName','phone','address','gender','email','actions']);
     }
 
-    openDialog(data : any){
-        const dialogConfig = new MatDialogConfig();
-        dialogConfig.disableClose = DialogConfig.disableClose;
-        dialogConfig.autoFocus = DialogConfig.autoFocus;
-        dialogConfig.width = DialogConfig.width;
-        if(data != null){
-          dialogConfig.data = data;
-        }      
-        this.dialog.open(ClienteComponent,dialogConfig);
-      }
+    openDialog(data : any){             
+        this.dialog.open(ClienteComponent,Utils.getDialogConfig(data));
+      }     
 }

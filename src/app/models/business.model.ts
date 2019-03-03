@@ -15,3 +15,9 @@ export class Cliente {
     gender: string;
     email: string;
 }
+
+export class Skill {
+    $key: string;
+    name: string;
+    estado: boolean;     
+}

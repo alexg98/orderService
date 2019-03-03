@@ -4,6 +4,8 @@ import { AngularFireDatabase, AngularFireList, SnapshotAction } from 'angularfir
 import * as _ from 'lodash';
 import { DatePipe } from '@angular/common';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Cliente } from 'src/app/models/business.model';
 
 export interface IBaseService<T>{
     findAll() : Observable<SnapshotAction<any>[]>;
@@ -28,7 +30,7 @@ export class BaseService<T> implements IBaseService<T>{
   }
   
   findAll() : Observable<SnapshotAction<T>[]> {
-    this.list = this.firebase.list(this.ref);
+    this.list = this.firebase.list(this.ref) ;
     return this.list.snapshotChanges();
   }
 
@@ -42,5 +44,30 @@ export class BaseService<T> implements IBaseService<T>{
 
   delete(key: string) {
     this.list.remove(key);
+  }
+
+  getEntityByStart(start : string, campo, max){
+    if(start.length <= max){
+      return null;
+    } 
+    var list = this.firebase.list<T>(this.ref, ref => 
+      ref.orderByChild(campo)
+      .startAt(start)
+      .endAt(start+'\uf8ff')   
+      .limitToFirst(3))
+      .snapshotChanges();
+    return this.pipe(list);
+  }
+
+  pipe(list : Observable<any>) : any{
+    return list.pipe(
+      map(changes =>
+          changes.map(value => {
+              const data = value.payload.val();
+              const $key = value.payload.key;
+              return { $key, ...data };
+          })
+      )
+  )
   }
 }
